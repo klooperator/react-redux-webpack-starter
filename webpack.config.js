@@ -3,18 +3,24 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-   entry: './src/app.js',
+   entry: './src/main.js',
   output: { path: path.resolve(__dirname, 'dist'),
             filename: '[name].[hash].js' },
   module: {
-      rules: [ {test: /\.css$/,
-                use: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})},
+      rules: [
+               { test: /\.css$/,
+                 use: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"}) },
 
-               {test: /\.(png|svg|jpg|gif)$/,
-                use:['file-loader']}  ]
+               { test: /\.(png|svg|jpg|gif)$/,
+                 use:['file-loader'] },
+
+               { test: /\.js$/, exclude: /node_modules/,
+                 loader: "babel-loader" }
+
+             ]
   },
-  plugins: [ new ExtractTextPlugin("styling.css") ,
-             new HtmlWebpackPlugin()
+  plugins: [ new ExtractTextPlugin("main-style.css") ,
+             new HtmlWebpackPlugin({template: 'index-template.ejs', inject: 'body'})
             ],
-  devtool: "inline-source-map"
+  devtool: "eval-source-map"
 }
