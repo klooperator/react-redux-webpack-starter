@@ -7,7 +7,6 @@ const INIT_STATE = Map({
 const first_Reducer = (state=INIT_STATE, action) => {
   switch(action.type){
     case "SAVE_GRAPH_DATA":
-      console.log(">>>", action.payload)
       return state.setIn(['data', 'graphData'], List(action.payload))
     default:
       return state
