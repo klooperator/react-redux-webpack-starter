@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import first_Reducer from './reducers/first_Reducer.js'
 
 const rootReducer = combineReducers( {first_Reducer} )
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <Provider store={store}>
