@@ -19,7 +19,7 @@ module.exports = {
 
              ]
   },
-  plugins: [ new ExtractTextPlugin("main-style.css") ,
+  plugins: [ new ExtractTextPlugin("main-style.[hash].css") ,
              new HtmlWebpackPlugin({template: 'index-template.ejs', inject: 'body'})
             ],
   devtool: "eval-source-map"
