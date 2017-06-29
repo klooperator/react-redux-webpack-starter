@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { MyFirstComponent, GraphChart } from "../components/index.js"
+import { toNum } from "../utils.js"
 import actions from "../actions.js"
 
 /*CONSTANTS*/
@@ -20,23 +21,25 @@ class AppComponent extends React.Component {
  }
 
  componentDidUpdate(){
-  console.log( "Root Component Updated!" , this.props.stateProps.first_Reducer.toJS());
+  console.log( "Root Component Updated!" );
  }
 
  render(){
-  const { stateProps } = this.props
+  const { graphData } = this.props
   return(
    <div>
      <MyFirstComponent />
-     <GraphChart state={ stateProps.first_Reducer }/>
+     <GraphChart graphData={ graphData }/>
    </div>
   )
  }
 }
 /***************** Converting to Component *******************/
 const mapStateToProps = (stateProps , ownProps)=>{
+  const rawGraphData = (stateProps.first_Reducer.getIn(['data', 'graphData']) ? stateProps.first_Reducer.getIn(['data', 'graphData']) : false )
+
  return{
-  stateProps
+  graphData : toNum(rawGraphData)
  }
 }
 

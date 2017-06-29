@@ -3,7 +3,7 @@ import './myFirstComponent.css'
 
 const DumbComponent = ()=>{
  return(
-  <h1 className="first">First React Component Loaded!</h1>
+  <h1 className="first">React + Redux + Webpack 3</h1>
  )
 }
 
