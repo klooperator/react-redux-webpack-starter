@@ -16,7 +16,6 @@ module.exports = {
 
                { test: /\.js$/, exclude: /node_modules/,
                  loader: "babel-loader" }
-
              ]
   },
   plugins: [ new ExtractTextPlugin("main-style.[hash].css") ,
