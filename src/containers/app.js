@@ -1,10 +1,14 @@
 import React from 'react'
-import path from 'path'
+import { connect } from 'react-redux'
 import { MyFirstComponent } from "../components/index.js"
 
-class App extends React.Component {
- constructor(){
-  super()
+class AppComponent extends React.Component {
+ constructor(props){
+  super(props)
+ }
+
+ componentDidMount(){
+  console.log("Root component mounted! Props :::" , this.props);
  }
 
  render(){
@@ -15,5 +19,13 @@ class App extends React.Component {
   )
  }
 }
+/***************** Converting to Component *******************/
+const mapStateToProps = (stateProps , ownProps)=>{
+ return{
+  stateProps
+ }
+}
+
+const App = connect(mapStateToProps)(AppComponent)
 
 export default App
