@@ -5,7 +5,11 @@
   "main": "./src/main.js",
   "scripts": {
     "dev": "webpack --progress --watch",
-    "dev-server": "webpack-dev-server --hot"
+    "dev-server": "webpack-dev-server --hot",
+    "start": "node dev/server.js",
+    "startstaging": "node dev/stagingserver.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js",
+    "build": "npm run clean && npm run build:webpack"
   },
   "author": "Jonalogy",
   "license": "ISC",
@@ -21,7 +25,9 @@
     "redux-devtools": "^3.4.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-hot-middleware": "^2.18.0"
   },
   "babel": {
     "presets": [
@@ -36,7 +42,9 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "recharts": "^1.0.0-alpha.1",
-    "redux": "^3.7.1"
+    "redux": "^3.7.1",
+    "redux-responsive": "^4.3.2",
+    "redux-thunk": "^2.2.0"
   },
   "false": {}
 }
