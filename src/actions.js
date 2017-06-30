@@ -4,7 +4,14 @@ const saveGraphData = (data)=>{
    payload: data
   }
 }
+const saveUsdSgd = (data)=>{
+  return {
+   type: "SAVE_USD_SGD",
+   payload: data
+  }
+}
 
 export default {
- saveGraphData
+ saveGraphData,
+ saveUsdSgd
 }

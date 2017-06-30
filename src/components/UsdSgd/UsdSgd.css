@@ -1,0 +1,14 @@
+.ticker{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+.fx-rate{
+ font-size: 30px;
+ font-weight: bold;
+}
+
+.timestamp{
+ font-style: italic;
+}

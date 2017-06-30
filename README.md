@@ -13,4 +13,4 @@
 
 ### Known Issues:
 
-* React-D3 Package is still accessing PropTypes from main React Package, raising low priority warnings
+* Hot-loading does not refresh stylings.
