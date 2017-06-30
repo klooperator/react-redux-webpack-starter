@@ -20,9 +20,7 @@ class AppComponent extends React.Component {
    return (()=>{
      fetch(forgeAPI)
       .then( response=>response.json() , ()=>alert("Forge API Fetch Error!")  )
-      .then( json=>{ dispatch(actions.saveUsdSgd(json[0]))
-                     setTimeout( ()=>console.log("3) Updated USD/SGD Rates"), 3000 )
-                     } , ()=>alert("Forge Data Save Error!") )
+      .then( json=>dispatch(actions.saveUsdSgd(json[0])) , ()=>alert("Forge Data Save Error!") )
     })()
  }
 
@@ -45,9 +43,8 @@ class AppComponent extends React.Component {
 
  componentDidUpdate(props){
    console.log( "<App> Component Updated!" );
-  
+
    setTimeout( ()=>this.fetchForge(props.dispatch) , 10000 )
-   console.log("2) fetching...")
  }
 
  componentWillUnmount(){

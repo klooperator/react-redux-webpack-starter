@@ -1,5 +1,6 @@
 import React from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import MyFirstComponent from "../myFirstComponent/myFirstComponent.js"
 import UsdSgdTicker from "../UsdSgd/UsdSgd.js"
 import "./GraphChart.css"
 
@@ -48,6 +49,7 @@ const GraphChart = (props)=>{
    <div className="graph-Container">
     { graphData ? renderChart(graphData) :  renderSpinner() }
    </div>
+   <MyFirstComponent />
   </div>
  )
 }

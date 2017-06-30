@@ -1,10 +1,12 @@
 import React from 'react'
 import './myFirstComponent.css'
 
-const DumbComponent = ()=>{
+const myFirstComponent = ()=>{
  return(
-  <h1 className="first">Live USD\SGD Rates</h1>
+  <div className="first">
+   Built with React + Redux | Bundled with Webpack
+  </div>
  )
 }
 
-export default DumbComponent
+export default myFirstComponent
