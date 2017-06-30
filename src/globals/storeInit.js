@@ -4,6 +4,7 @@ import rootReducer,{rootInitState} from './root-reducer'
 import thunk from 'redux-thunk'
 
 export default function configureStore() {
+  console.log(rootReducer);
   const store = createStore(
     rootReducer, 
     rootInitState, 
