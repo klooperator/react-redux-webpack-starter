@@ -1,7 +1,4 @@
-import { combineReducers } from 'redux'
-import {global,initStateGlobal} from './global-reducer'
-import { responsiveStateReducer } from 'redux-responsive'
-import { routerReducer as routing } from 'react-router-redux'
+import {Record} from 'immutable'
 
 /*
  /$$           /$$   /$$                       /$$                 /$$              
@@ -12,14 +9,12 @@ import { routerReducer as routing } from 'react-router-redux'
 | $$| $$  | $$| $$  | $$ /$$       \____  $$  | $$ /$$ /$$__  $$  | $$ /$$| $$_____/
 | $$| $$  | $$| $$  |  $$$$/       /$$$$$$$/  |  $$$$/|  $$$$$$$  |  $$$$/|  $$$$$$$
 |__/|__/  |__/|__/   \___/        |_______/    \___/   \_______/   \___/   \_______/
-                                                                                    
-                                                                                    
-                                                                                  */
-export function rootInitState(){
-    return({
-        global: new initStateGlobal(),
-    });
-}
+                                                                                    */
+export const initStateGlobal = Record({
+    formType: null,
+    formFileds: null,
+});
+
 
 /*
                            /$$                                                /$$$$$$                                 /$$$ /$$$  
@@ -31,9 +26,9 @@ export function rootInitState(){
 | $$      |  $$$$$$$|  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$            | $$     |  $$$$$$/| $$  | $$|  $$$$$$$ \  $$$ /$$$/ 
 |__/       \_______/ \_______/ \______/  \_______/ \_______/|__/            |__/      \______/ |__/  |__/ \_______/  \___/|___/ */
 
-export const rootReducer = combineReducers({
-    global,
-    routing,
-    browser: responsiveStateReducer
-}); 
-export default rootReducer;
+export function formReducer(State = initStateGlobal, action){
+    switch(action.type){
+        case FORM_VALIDATION:
+
+    }
+}                                                                           

@@ -1,5 +1,3 @@
-import {Record} from 'immutable'
-
 /*
  /$$           /$$   /$$                       /$$                 /$$              
 |__/          |__/  | $$                      | $$                | $$              
@@ -8,19 +6,19 @@ import {Record} from 'immutable'
 | $$| $$  \ $$| $$  | $$          |  $$$$$$   | $$      /$$$$$$$  | $$    | $$$$$$$$
 | $$| $$  | $$| $$  | $$ /$$       \____  $$  | $$ /$$ /$$__  $$  | $$ /$$| $$_____/
 | $$| $$  | $$| $$  |  $$$$/       /$$$$$$$/  |  $$$$/|  $$$$$$$  |  $$$$/|  $$$$$$$
-|__/|__/  |__/|__/   \___/        |_______/    \___/   \_______/   \___/   \_______/
-                                                                                    
-                                                                                    
+|__/|__/  |__/|__/   \___/        |_______/    \___/   \_______/   \___/   \_______/                   
                                                                                   */
-export const initStateGlobal = ()=>{
- const globalRecord = ({
-  currentUser: null,
-  showState: true,
-  currentState: null,
-  store: null
-    });
- return globalRecord
-}
+import {Record} from 'immutable'
+
+export const initStateGlobal = Record({
+    currentUser: null,
+    showState: true,
+    currentState: null,
+    store: null,
+    ruote: '/',
+    form:null
+});
+
 
 /*
                            /$$                                                /$$$$$$                                 /$$$ /$$$  
@@ -31,8 +29,33 @@ export const initStateGlobal = ()=>{
 | $$      | $$_____/| $$  | $$| $$  | $$| $$      | $$_____/| $$            | $$     | $$  | $$| $$  | $$| $$      |  $$     /$$/
 | $$      |  $$$$$$$|  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$            | $$     |  $$$$$$/| $$  | $$|  $$$$$$$ \  $$$ /$$$/ 
 |__/       \_______/ \_______/ \______/  \_______/ \_______/|__/            |__/      \______/ |__/  |__/ \_______/  \___/|___/ */
-export function globalReducer(state = initStateGlobal(), action){
+
+import {
+SET_FORM_TYPE,
+SET_FORM_VALUES,
+CLEAR_FORMS,
+FORM_LOGIN,
+FORM_FORGOT,
+FORM_REGISTER,
+} from './global-constants'
+/*const {
+SET_FORM_TYPE,
+SET_FORM_VALUES,
+CLEAR_FORMS,
+FORM_LOGIN,
+FORM_FORGOT,
+FORM_REGISTER,
+} = require('./global-constants').default*/
+
+
+export function global(state = initStateGlobal, action){
     switch(action.type){
+        case SET_FORM_TYPE:
+            console.log('global reducer');
+            console.log(state);
+            console.log(action);
+            state.form = action.value;
+            return state;
         default:
         return state;
     }
