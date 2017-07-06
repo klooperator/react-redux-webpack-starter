@@ -14,8 +14,10 @@ module.exports = {
                { test: /\.(png|svg|jpg|gif)$/,
                  use:['file-loader'] },
 
-               { test: /\.js$/, exclude: /node_modules/,
-                 loader: "babel-loader" }
+               { test: /\.jsx?$/, 
+                 exclude: /node_modules/,
+                 loader: "babel-loader",
+                }
              ]
   },
   plugins: [ new ExtractTextPlugin("main-style.[hash].css") ,

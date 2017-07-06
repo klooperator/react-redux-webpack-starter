@@ -9,8 +9,12 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import App from './components/index'
 
 const store = configureStore();
-/*console.log(store);
-console.log(createBrowserHistory());*/
+
+/*DEBUG*/
+import storeListener from './globals/global-listener'
+store.subscribe(() => {storeListener(store)});
+
+
 const history = syncHistoryWithStore(createBrowserHistory(), store)
 
 ReactDOM.render(

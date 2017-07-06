@@ -34,7 +34,7 @@ function mapStateToProps(state, ownProps) {
 class App extends React.Component{
 
     getCurrentRoute(){
-        console.log(this.props.globalState.currentUser)
+        /*console.log(this.props.globalState.currentUser)*/
         if(!this.props.globalState.currentUser)
         return (
             <LoginPage />
@@ -43,7 +43,7 @@ class App extends React.Component{
 
     render(){
         let self = this;
-        console.log(self);
+        /*console.log(self);*/
         return(
             <Router history={self.props.history}>
                 {self .getCurrentRoute()}

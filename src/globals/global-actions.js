@@ -1,33 +1,43 @@
-import {
-SET_FORM_TYPE,
-SET_FORM_VALUES,
-CLEAR_FORMS,
-FORM_LOGIN,
-FORM_FORGOT,
-FORM_REGISTER,
-} from './global-constants'
+const {
+LOGIN_REQUEST,
+LOGIN_SUCCESS,
+LOGIN_FAILURE,
+FETCHING_USER_DATA,
+LOGGED_IN,
+} = require('./global-constants').default;
 
-
-/*
-  /$$$$$$                                           
- /$$__  $$                                          
-| $$  \__//$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$$
-| $$$$   /$$__  $$ /$$__  $$| $$_  $$_  $$ /$$_____/
-| $$_/  | $$  \ $$| $$  \__/| $$ \ $$ \ $$|  $$$$$$ 
-| $$    | $$  | $$| $$      | $$ | $$ | $$ \____  $$
-| $$    |  $$$$$$/| $$      | $$ | $$ | $$ /$$$$$$$/
-|__/     \______/ |__/      |__/ |__/ |__/|_______/ 
-                                                   */
-export function setFormType(formType){
+export function aLoginRequest(username, password){
     return {
-        type: SET_FORM_TYPE,
-        value: formType
+        type: LOGIN_REQUEST,
+        payload: {
+            username: username,
+            password: password
+        }
     }
 }
 
-export function setFormValues(values){
+export function aLoginFailure(){
     return {
-        type: SET_FORM_VALUES,
-        value: values
+        type: LOGIN_FAILURE,
+    }
+}
+
+export function aLoginSuccess(json){
+    return {
+        type: LOGIN_SUCCESS,
+        payload: json
+    }
+}
+
+export function aFetchUserData(json){
+    return {
+        type: FETCHING_USER_DATA,
+    }
+}
+
+export function aLoggedInWithData(json){
+    return {
+        type: LOGGED_IN,
+        payload:json
     }
 }

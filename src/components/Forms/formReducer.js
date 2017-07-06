@@ -1,4 +1,11 @@
 import {Record} from 'immutable'
+const {
+FORM_VALIDATION,
+FORM_LOGIN,
+FORM_FORGOT,
+FORM_REGISTER,
+SET_FORM_TYPE
+} = require('../../globals/global-constants').default;
 
 /*
  /$$           /$$   /$$                       /$$                 /$$              
@@ -11,8 +18,8 @@ import {Record} from 'immutable'
 |__/|__/  |__/|__/   \___/        |_______/    \___/   \_______/   \___/   \_______/
                                                                                     */
 export const initStateGlobal = Record({
-    formType: null,
-    formFileds: null,
+    type: null,
+    fileds: {},
 });
 
 
@@ -26,9 +33,13 @@ export const initStateGlobal = Record({
 | $$      |  $$$$$$$|  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$            | $$     |  $$$$$$/| $$  | $$|  $$$$$$$ \  $$$ /$$$/ 
 |__/       \_______/ \_______/ \______/  \_______/ \_______/|__/            |__/      \______/ |__/  |__/ \_______/  \___/|___/ */
 
-export function formReducer(State = initStateGlobal, action){
+export function form(state = initStateGlobal, action){
     switch(action.type){
-        case FORM_VALIDATION:
+        case SET_FORM_TYPE:
+            let newState =  state.set('type', action.payload)
+            return newState;
+        default:
+            return state;
 
     }
 }                                                                           

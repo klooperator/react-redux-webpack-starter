@@ -1,27 +1,43 @@
 import React from 'react'
 import Form from '../Forms/lrfForm'
 
-import {setFormType} from '../../globals/global-actions'
+import {setFormType} from '../Forms/formActions'
 import { connect } from 'react-redux'
 
 import { bindActionCreators } from 'redux'
-import {
+const {
+FORM_VALIDATION,
 FORM_LOGIN,
 FORM_FORGOT,
 FORM_REGISTER,
-} from '../../globals/global-constants'
+SET_FORM_TYPE
+} = require('../../globals/global-constants').default;
 
-function mapDispatchToProps(dispatch) {
+import {aLoginRequest} from '../../globals/global-actions'
+
+function mapDispatchToProps(dispatch, props) {
   return {
-    actions: bindActionCreators(setFormType,dispatch),
-
+    dispatchFormType: type =>{
+        dispatch(setFormType(type))
+    },
+    dispatchLoginReguest: (username, password) => {
+        dispatch(aLoginRequest(username, password))
+    }
   }
+}
+const mapStateToProps = (state, ownProps) => {
+    return {
+        global: state.global.toJS(),
+        form: state.form.toJS(),
+    }
 }
 class LoginPage extends React.Component{
 
     constructor(props){
         super(props);
         this.test = this.test.bind(this);
+        //this.props.dispatchFormType(FORM_LOGIN);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     renderHeader(){
@@ -40,10 +56,15 @@ class LoginPage extends React.Component{
         );
     }
 
+    onFormSubmit(){
+        /*console.log(this);*/
+        this.props.dispatchLoginReguest('eee', 'aaa');
+    }
+
     test(values){
-        console.log(this);
-        console.log(values);
-        dispatch(this.actions.setFormType(FORM_LOGIN));
+        /*console.log(this);*/
+        /*console.log(values);*/
+        this.props.dispatchFormType(FORM_LOGIN);
     }
 
     render(){
@@ -53,8 +74,11 @@ class LoginPage extends React.Component{
             {self.renderHeader()}
             {self.renderSubHeader()}
             <Form 
-            onChange = {self.test}/>
+            onChange = {self.test}
+            form = {self.props.form}
+            global = {self.props.global}
+            onSubmit = {self.onFormSubmit}/>
         </div>
         );
     }
-}export default connect(null, mapDispatchToProps)(LoginPage)
+}export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
