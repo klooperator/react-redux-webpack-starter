@@ -1,20 +1,26 @@
 const {
+LOGIN_CHECK,
 LOGIN_SUCCESS,
 LOGIN_REQUEST,
 LOGIN_FAILURE,
 FETCHING_USER_DATA,
+LOGOUT_REQUEST,
 } = require('./global-constants').default;
 
 import wrapper, {
     login, 
     getInitData,
-    getCurrentUser
+    getCurrentUser,
+    nop,logout,
 } from '../api'
 import {
     aLoginFailure, 
     aLoginSuccess,
     aFetchUserData,
     aLoggedInWithData,
+    aLoggedOutState,
+    aLogoutSuccess,
+    aLogoutFailure,
 } from './global-actions'
 
 /**
@@ -23,8 +29,11 @@ import {
  * @param {redux store} store - a store to listen to 
  */
 export default function storeListener(store){
-    console.log('___LISTENER START _____');
+    /*console.log('___LISTENER START _____' + store.getState()['global'].get('currentState'));*/
     switch (store.getState()['global'].get('currentState')){
+        case LOGIN_CHECK:
+            wrapper(nop(), aLoginSuccess, aLoggedOutState, store.dispatch);
+            break;
         case LOGIN_REQUEST:
             wrapper(login('dprpic@zipato.com', '535934pkh'), aLoginSuccess, aLoginFailure, store.dispatch);
             break;
@@ -34,9 +43,12 @@ export default function storeListener(store){
         case FETCHING_USER_DATA:
             getInitData(aLoggedInWithData,aLoggedInWithData, store.dispatch); 
             break;
+        case LOGOUT_REQUEST:
+            wrapper(logout(), aLogoutSuccess, aLogoutFailure, store.dispatch);
+            break;
         default:
             return
     }
-    console.log('___LISTENER END _____');
+    /*console.log('___LISTENER END _____');*/
 
 }

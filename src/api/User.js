@@ -18,7 +18,7 @@ export function login(username, password, serial, nonce){
             else throw 'fail';
         }).then(json=>{
             let token = sha1(json.nonce + sha1(password));
-            return fetch(server + '/user/login' + '?username=' + username + '&token=' + token + '&serial=' + serial, {credentials: 'same-origin',})
+            return fetch(server + '/user/login' + '?username=' + username + '&token=' + token, {credentials: 'same-origin',})
         }).catch(e =>{
             return Promise.resolve({ok:false})
         })

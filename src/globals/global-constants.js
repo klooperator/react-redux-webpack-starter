@@ -1,7 +1,13 @@
 import keyMirror from 'fbjs/lib/keyMirror'
 
 export default keyMirror({
+
+    GENERIC_FAIL:null,
+
+
+
     /*api/login*/
+    LOGIN_CHECK:null,
     LOGIN_REQUEST: null,
     LOGIN_SUCCESS: null,
     LOGIN_FAILURE: null,
@@ -30,6 +36,13 @@ export default keyMirror({
 
     /*States*/
     LOGGED_IN:null,
+    LOGGED_OUT:null,
+
+    /*boxes*/
+    BOX_CHANGED:null,
+
+    /*pages*/
+    ADMIN_PAGE:null
 
 
 
