@@ -1,0 +1,3 @@
+WALLET:
+# api/index/{getInitData}
+! /wallet zna vratit prazan string, json() to nemoze parsat

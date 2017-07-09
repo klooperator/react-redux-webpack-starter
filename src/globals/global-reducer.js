@@ -32,6 +32,7 @@ export const initStateGlobal = Record({
 |__/       \_______/ \_______/ \______/  \_______/ \_______/|__/            |__/      \______/ |__/  |__/ \_______/  \___/|___/ */
 
 const {
+SET_FORM_TYPE,
 LOGGED_OUT,
 LOGIN_CHECK,
 FETCHING_USER_DATA,
@@ -61,6 +62,11 @@ export function global(state = initStateGlobal, action){
     /*console.log(action);*/
     let newState;
     switch(action.type){
+        case SET_FORM_TYPE:
+            newState = state.withMutations(s=>{
+                s.set('form', action.payload);
+            });
+            return newState
         case LOGIN_CHECK:
             newState = state.merge({isFetching: true, currentState:LOGIN_CHECK});
             return newState;
@@ -94,6 +100,7 @@ export function global(state = initStateGlobal, action){
                 s.setIn(['currentUser','data'],action.payload.currentUser);
                 s.setIn(['currentUser','boxes'],action.payload.userBoxes);
                 s.setIn(['currentUser','currentBox'],action.payload.currentBox);
+                s.setIn(['currentUser','wallet'],action.payload.wallet);
             });
             else newState = state.merge({isFetching: false, currentState:LOGGED_IN, ruote:'/'});
             console.log('_____ REDUCER ______');

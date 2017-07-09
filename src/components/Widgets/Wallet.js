@@ -13,19 +13,18 @@ function mapDispatchToProps(dispatch){
 }
 function mapStateToProps(state, ownProps) {
   return {
-    boxes: state.global.get('currentUser').get('boxes'),
-    currentBox: state.global.get('currentUser').get('currentBox')
+    wallet: state.global.get('currentUser').get('wallet'),
   }
 }
 
 
- class Boxes extends React.Component{
+ class Wallet extends React.Component{
 
      constructor(props){
          super(props);
-         this.onClick = this.onClick.bind(this);
+         /*this.onClick = this.onClick.bind(this);
          this.getBoxRender = this.getBoxRender.bind(this);
-         this.getSingleBoxRendered = this.getSingleBoxRendered.bind(this);
+         this.getSingleBoxRendered = this.getSingleBoxRendered.bind(this);*/
      }
 
     onClick(event){
@@ -41,25 +40,24 @@ function mapStateToProps(state, ownProps) {
         /*console.log(event.target.parentNode);*/
     }
 /**/
-    getBoxRender(){
-        if(this.props.boxes === undefined || this.props.boxes === null)return (<span>there is no love in this part of the city</span>)
+    getWalletRender(){
+        if(this.props.wallet === undefined || this.props.wallet === null)return (<span>there is no love in this part of the city</span>)
         let out=[];
-
-        this.props.boxes.forEach(function(element) {
-            let serial = element.serial;
-            let name = (element.name !== undefined && element.name && element.name !== '')?element.name:element.serial;
-            out.push(this.getSingleBoxRendered(name, serial));
+        out.push(<div><h4>Curent credits:</h4><span>{this.props.wallet.transactions[0].newCredits}</span></div>);
+        this.props.wallet.transactions.forEach(function(element) {
+            out.push(this.getTransactionRender(element));
             
         },this);
         return out;
     }
 
-    getSingleBoxRendered(name, serial){
+    getTransactionRender(json){
         return (
-            <li onClickCapture={this.onClick} data-serial={serial} key={serial}>
-                <h4 style={(this.props.currentBox.serial === serial) ? {color: 'red'} : {}}>{name}</h4>
-                <span style={{fontSize:'small'}}>{serial}</span>
-            </li>
+            <div>
+                <strong>{json.createdDate}</strong>
+                <p>{json.description}</p>
+                <p>Amount: {json.amount}</p>
+            </div>
         )
     }
 
@@ -68,10 +66,8 @@ function mapStateToProps(state, ownProps) {
         let self = this;
         return(
             <div style={{display:'inline-block', border:'1px solid'}}>
-                <ul>
-                {self.getBoxRender()}
-                </ul>
+                {self.getWalletRender()}
             </div>
         );
     }
-}export default connect(mapStateToProps,mapDispatchToProps)(Boxes)
+}export default connect(mapStateToProps,mapDispatchToProps)(Wallet)

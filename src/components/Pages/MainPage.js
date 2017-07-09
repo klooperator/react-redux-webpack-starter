@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import {aLogOut,aAdminPage} from '../../globals/global-actions'
 import Boxes from '../Widgets/Boxes'
+import Wallet from '../Widgets/Wallet'
 
 function mapDispatchToProps(dispatch){
     return {
@@ -35,12 +36,15 @@ function mapDispatchToProps(dispatch){
         /*console.log(self);*/
         return(
             <div>
-                <div>
+                <div style={{float:'left'}}>
                     <button onClick={self.goToAdmin}>Admin panel</button>
-                </div>
-                <div>
-                    <Boxes />
                     <button onClick={self.onClick}>logout</button>
+                </div>
+                <div style={{float:'left'}}>
+                    <Boxes />
+                </div>
+                <div style={{float:'left'}}>
+                    <Wallet />
                 </div>
             </div>
         );

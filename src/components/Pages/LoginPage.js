@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch, props) {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        global: state.global.toJS(),
+        globalForm: state.global.get('form'),
         form: state.form.toJS(),
     }
 }
@@ -38,6 +38,7 @@ class LoginPage extends React.Component{
         this.test = this.test.bind(this);
         //this.props.dispatchFormType(FORM_LOGIN);
         this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.changeFormType = this.changeFormType.bind(this);
     }
 
     renderHeader(){
@@ -51,7 +52,7 @@ class LoginPage extends React.Component{
     renderSubHeader(){
         return(
             <div>
-                <span>Login or <a href="/register">Register</a></span>
+                <span><a onClick={()=>{this.changeFormType(FORM_LOGIN)}}>Login</a> or <a onClick={()=>{this.changeFormType(FORM_REGISTER)}}>Register</a></span>
             </div>
         );
     }
@@ -61,13 +62,19 @@ class LoginPage extends React.Component{
         this.props.dispatchLoginReguest('eee', 'aaa');
     }
 
+    changeFormType(formType){
+        console.log("WHYYYYYY????");
+        this.props.dispatchFormType(formType);
+    }
+
     test(values){
         /*console.log(this);*/
         /*console.log(values);*/
-        this.props.dispatchFormType(FORM_LOGIN);
+        /*this.props.dispatchFormType(FORM_LOGIN);*/
     }
 
     render(){
+        console.log(this);
         let self = this;
         return(
         <div>
@@ -76,7 +83,7 @@ class LoginPage extends React.Component{
             <Form 
             onChange = {self.test}
             form = {self.props.form}
-            global = {self.props.global}
+            global = {self.props.globalForm}
             onSubmit = {self.onFormSubmit}/>
         </div>
         );
