@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Route} from 'react-router-dom'
 import {aLogOut,aAdminPage} from '../../globals/global-actions'
 import Boxes from '../Widgets/Boxes'
 import Wallet from '../Widgets/Wallet'
+import WidgetLoader from '../Widgets/DeviceWidgets/WidgetLoader'
 
 function mapDispatchToProps(dispatch){
     return {
@@ -35,7 +36,7 @@ function mapDispatchToProps(dispatch){
         let self = this;
         /*console.log(self);*/
         return(
-            <div>
+            <div style={{display:'inline-block'}}>
                 <div style={{float:'left'}}>
                     <button onClick={self.goToAdmin}>Admin panel</button>
                     <button onClick={self.onClick}>logout</button>
@@ -45,6 +46,9 @@ function mapDispatchToProps(dispatch){
                 </div>
                 <div style={{float:'left'}}>
                     <Wallet />
+                </div>
+                <div>
+                    <WidgetLoader />
                 </div>
             </div>
         );

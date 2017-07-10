@@ -36,9 +36,21 @@ app.post('/zipato-web/v2/*', proxy);
 app.put('/zipato-web/v2/*', proxy);
 app.delete('/zipato-web/v2/*', proxy);
 
-app.use(function(req, res) {
+/*app.use(function(req, res) {
   res.sendFile(path.join(__dirname, '../static/index.html'))
-})
+})*/
+
+app.use('*', function (req, res, next) {
+  var filename = path.join(compiler.outputPath,'index.html');
+  compiler.outputFileSystem.readFile(filename, function(err, result){
+    if (err) {
+      return next(err);
+    }
+    res.set('content-type','text/html');
+    res.send(result);
+    res.end();
+  });
+});
 
 app.listen(3000, function(err) {
   if (err) {

@@ -101,6 +101,8 @@ export function global(state = initStateGlobal, action){
                 s.setIn(['currentUser','boxes'],action.payload.userBoxes);
                 s.setIn(['currentUser','currentBox'],action.payload.currentBox);
                 s.setIn(['currentUser','wallet'],action.payload.wallet);
+                s.setIn(['currentUser','attributesFull'],action.payload.attributesFull);
+                s.setIn(['currentUser','typesAll'],action.payload.typesAll);
             });
             else newState = state.merge({isFetching: false, currentState:LOGGED_IN, ruote:'/'});
             console.log('_____ REDUCER ______');

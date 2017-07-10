@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {BrowserRouter as Router,Route} from 'react-router-dom'
 import {aGenericFail,aBoxChange} from '../../globals/global-actions'
 import wrapper, {selectBox} from '../../api/index'
 
@@ -67,7 +66,7 @@ function mapStateToProps(state, ownProps) {
         /*console.log(this)*/
         let self = this;
         return(
-            <div style={{display:'inline-block', border:'1px solid'}}>
+            <div style={{display:'inline-block', border:'1px solid', margin:'1px', padding: '5px'}}>
                 <ul>
                 {self.getBoxRender()}
                 </ul>

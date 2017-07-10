@@ -46,14 +46,13 @@ function mapStateToProps(state, ownProps) {
         out.push(<div><h4>Curent credits:</h4><span>{this.props.wallet.transactions[0].newCredits}</span></div>);
         this.props.wallet.transactions.forEach(function(element) {
             out.push(this.getTransactionRender(element));
-            
         },this);
         return out;
     }
 
     getTransactionRender(json){
         return (
-            <div>
+            <div key={json.createdDate}>
                 <strong>{json.createdDate}</strong>
                 <p>{json.description}</p>
                 <p>Amount: {json.amount}</p>
@@ -65,7 +64,7 @@ function mapStateToProps(state, ownProps) {
         /*console.log(this)*/
         let self = this;
         return(
-            <div style={{display:'inline-block', border:'1px solid'}}>
+            <div style={{display:'inline-block', border:'1px solid', margin:'1px', padding: '5px'}}>
                 {self.getWalletRender()}
             </div>
         );
