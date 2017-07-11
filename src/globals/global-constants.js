@@ -3,7 +3,7 @@ import keyMirror from 'fbjs/lib/keyMirror'
 export default keyMirror({
 
     GENERIC_FAIL:null,
-
+    ADD_REPEATER:null,
 
 
     /*api/login*/
@@ -33,6 +33,10 @@ export default keyMirror({
 
     /*User data*/
     FETCHING_USER_DATA:null,
+    SET_USER:null,
+    SET_BOXES:null,
+    SET_CURRENT_BOX:null,
+    SET_WALLET:null,
 
     /*States*/
     LOGGED_IN:null,

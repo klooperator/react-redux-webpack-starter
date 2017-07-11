@@ -12,9 +12,9 @@ import {walletUserTransactions} from './Wallet'
 import {typesSearchAll} from './Types'
 import {getFullAttributes_full} from './Attributes'
 
-export default function apiWrapper(apiCallFuncPromise, successAction, failureAction, dispatch){
+export default function apiWrapper(apiCallFuncPromise, successAction, failureAction, dispatch, repeater){
     /*console.log('w___r__a__p__e__r');*/
-    console.log(successAction());
+    /*console.log(successAction());*/
     apiCallFuncPromise.then(response =>{
         /*console.log(response);*/
         if(response.ok)return response.json();
@@ -23,7 +23,11 @@ export default function apiWrapper(apiCallFuncPromise, successAction, failureAct
         /*console.log('wrapper final json::::::');
         console.log(json);*/
         dispatch(successAction(json));
-    }).catch(e => {console.log(e);dispatch(failureAction(e))})
+    }).catch(e => {
+        console.log(e);
+        dispatch(failureAction(e));
+        /*repeater.addPromise();*/
+    })
 }
 
 

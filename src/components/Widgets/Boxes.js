@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {aGenericFail,aBoxChange} from '../../globals/global-actions'
-import wrapper, {selectBox} from '../../api/index'
+import {aGenericFail,aBoxChange,aFetchUserData} from '../../globals/global-actions'
+import wrapper, {selectBox, registerNewBox} from '../../api/index'
 
 function mapDispatchToProps(dispatch){
     return {
         boxChange: (serial) => {
             wrapper(selectBox(serial),aBoxChange, aGenericFail, dispatch);
+        },
+        dispatchAddNewBox: (serial)=>{
+            wrapper(registerNewBox(serial),aFetchUserData, aGenericFail, dispatch);
         }
   }
 }
@@ -25,6 +28,7 @@ function mapStateToProps(state, ownProps) {
          this.onClick = this.onClick.bind(this);
          this.getBoxRender = this.getBoxRender.bind(this);
          this.getSingleBoxRendered = this.getSingleBoxRendered.bind(this);
+         this.addNewBoxClick = this.addNewBoxClick.bind(this);
      }
 
     onClick(event){
@@ -38,6 +42,11 @@ function mapStateToProps(state, ownProps) {
             .then(j=>{console.log(j)});*/
         this.props.boxChange(serial);
         /*console.log(event.target.parentNode);*/
+    }
+
+    addNewBoxClick(){
+        console.log(this.refs.add_new_box_input_field.value);
+        this.props.dispatchAddNewBox(this.refs.add_new_box_input_field.value);
     }
 /**/
     getBoxRender(){
@@ -70,6 +79,9 @@ function mapStateToProps(state, ownProps) {
                 <ul>
                 {self.getBoxRender()}
                 </ul>
+                <div>
+                    <input ref='add_new_box_input_field' type='text' /><button onClick={self.addNewBoxClick}>Add new Box</button>
+                </div>
             </div>
         );
     }

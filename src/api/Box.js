@@ -23,3 +23,10 @@ export function selectBox(serial){
         method: 'get',
     })
 }
+
+export function registerNewBox(serial){
+    return fetch(server + '/box/register' + '?serial=' + serial , {
+        credentials: 'same-origin',
+        method: 'post',
+    })
+}

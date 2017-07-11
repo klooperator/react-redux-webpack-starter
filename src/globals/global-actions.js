@@ -1,6 +1,8 @@
 const {
+ADD_REPEATER,
 GENERIC_FAIL,
 LOGIN_CHECK,
+SET_USER,SET_BOXES,SET_CURRENT_BOX,SET_WALLET,
 LOGGED_OUT,
 LOGIN_REQUEST,
 LOGIN_SUCCESS,
@@ -16,6 +18,13 @@ ADMIN_PAGE,
 
 export function aGenericFail(){
     return {type:GENERIC_FAIL}
+}
+
+export function addRepeaterToStore(repeater){
+    return{
+        type: ADD_REPEATER,
+        payload: repeater
+    }
 }
 
 export function aLoginCheck(json){
@@ -78,7 +87,7 @@ export function aLogoutSuccess(){
     }
 }
 
-export function aLogoutFail(json){
+export function aLogoutFail(){
     return {
         type: LOGOUT_FAILURE,
     }
@@ -96,3 +105,33 @@ export function aAdminPage(){
         type: ADMIN_PAGE
     }
 }
+/*/////////////*/
+
+export function aSetCurrentUser(json){
+    return{
+        type: SET_USER,
+        payload:json
+    }
+}
+
+export function aSetBoxes(json){
+    return{
+        type: SET_BOXES,
+        payload:json
+    }
+}
+
+export function aSetCurrentBox(json){
+    return{
+        type: SET_CURRENT_BOX,
+        payload:json
+    }
+}
+
+export function aSetWallet(json){
+    return{
+        type: SET_WALLET,
+        payload:json
+    }
+}
+

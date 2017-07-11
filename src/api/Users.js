@@ -5,7 +5,7 @@ import {server} from './Utils'
 
 
 export function getCurrentUser(){
-    console.log(server + '/users/current');
+    /*console.log(server + '/users/current');*/
     return fetch(server + '/users/current', {
         credentials: 'same-origin',
         method: 'GET',
